@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    body {
+        background: #333;
+    }
+    h1 {
+        position: absolute;
+        top: 200px;
+        right: 100px;
+    }
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .text1 {
+        top: 200px;
+    }
+    .text2 {
+        top: 260px;
+    }
+    .text3 {
+        top: 320px;
+    }
+    .text4 {
+        top: 380px;
+    }
+</style>
+
+<body>
+    <h1 class="text1"><a href="bubble.html">只要有你在的地方，</a></h1>
+    <h1 class="text2"><a href="bubble.html">你永远都是是最亮。</a></h1>
+    <h1 class="text3"><a href="bubble.html">因为，</a></h1>
+    <h1 class="text4"><a href="bubble.html">你会发光啊。</a></h1>
+    <script src="//d3js.org/d3.v4.0.0-alpha.29.min.js"></script>
+    <script>
+        var width = 500,
+            height = 300,
+            radius = Math.sqrt(width / 2 * width / 2 + height / 2 * height / 2) + 5;
+
+        var theta = Math.PI * (3 - Math.sqrt(5)),
+            spacing = 4,
+            size = spacing - 1,
+            speed = 1,
+            index = 0,
+            total = (radius * radius) / (spacing * spacing);
+
+        var color = d3.scaleRainbow()
+            .domain([0, 180]);
+
+        var canvas = d3.select("body").append("canvas")
+            .attr("width", radius * 2)
+            .attr("height", radius * 2)
+            .style("position", "absolute")
+            .style("left", width / 2 - radius + 100 + "px")
+            .style("top", height / 2 - radius + 200 + "px")
+            .style("transform-origin", radius + "px " + radius + "px");
+
+        var context = canvas.node().getContext("2d");
+
+        context.translate(radius, radius);
+
+        d3.timer(function () {
+            canvas.style("transform", "rotate(" + -speed / 2 + "deg)");
+
+            for (var j = 0; index < total && j < speed; ++j) {
+                var radius = spacing * Math.sqrt(++index),
+                    angle = index * theta,
+                    x = radius * Math.cos(angle),
+                    y = radius * Math.sin(angle);
+
+                context.beginPath();
+                context.arc(x, y, size, 0, 2.5 * Math.PI);
+                context.stroke();
+                context.fillStyle = color(angle * 360 / Math.PI - radius);
+                context.fill();
+            }
+
+            speed += .05;
+        });
+    </script>

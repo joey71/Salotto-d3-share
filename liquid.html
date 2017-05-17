@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="./js/d3.min.js" language="JavaScript"></script>
+    <script src="./js/liquidFillGauge.js" language="JavaScript"></script>
+    <style>
+        .liquidFillGaugeText {
+            font-family: Helvetica;
+            font-weight: bold;
+        }
+        
+        .text {
+            position: absolute;
+            top: 200px;
+            right: 100px;
+        }
+        
+        .text1 {
+            top: 200px;
+        }
+        
+        .text2 {
+            top: 260px;
+        }
+        
+        .text3 {
+            top: 320px;
+        }
+        
+        .text4 {
+            top: 380px;
+        }
+        
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .word {
+            padding-top: 120px;
+            margin-right: 300px; 
+        }
+        
+        .word h1{
+            display: block;
+            float: left;
+            width: 150px;
+            height: 100px;
+            line-height: 100px;
+            padding-left: 78px;
+        }
+        .circle{
+            float: left;
+        }
+        .circle svg{
+            margin-left: 20px;
+        }
+        .air{
+            color: #178bca;
+        }
+        .sun{
+            color: #ffc542;
+        }
+        .breathe{
+            color: #FF7777;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="text1 text"><a href="./sunflower.html">还记得第一眼看到你的时候，</a></h2>
+    <h2 class="text2 text"><a href="./sunflower.html">我仿佛听见空气凝固的声音，</a></h2>
+    <h2 class="text3 text"><a href="./sunflower.html">连带着我的呼吸和心跳，</a></h2>
+    <h2 class="text4 text"><a href="./sunflower.html">一切时间都失去了意义。</a></h2>
+    <div class="word">
+        <h1 class="air">空气</h1>
+        <h1 class="sun">阳光</h1>
+        <h1 class="breathe">心跳</h1>
+    </div>
+    <div class="circle">
+        <svg id="fillgauge1" width="200px" height="200" onclick="gauge1.update(0);"></svg>
+        <svg id="fillgauge2" width="200px" height="200" onclick="gauge2.update(0);"></svg>
+        <svg id="fillgauge3" width="200px" height="200" onclick="gauge3.update(0);"></svg>
+    </div>
+    <script language="JavaScript">
+        var gauge1 = loadLiquidFillGauge("fillgauge1", 30);
+
+        var config1 = liquidFillGaugeDefaultSettings();
+        config1.circleColor = "#ffc542";
+        config1.textColor = "#ffc542";
+        config1.waveTextColor = "#ffc542";
+        config1.waveColor = "#ffecc2";
+        config1.waveHeight = 0;
+        config1.waveAnimate = false;
+        config1.circleThickness = 0.2;
+        config1.waveAnimateTime = 1000;
+        var gauge2 = loadLiquidFillGauge("fillgauge2", 50, config1);
+
+        var config2 = liquidFillGaugeDefaultSettings();
+        config2.circleColor = "#FF7777";
+        config2.textColor = "#FF4444";
+        config2.waveTextColor = "#FFAAAA";
+        config2.waveColor = "#FFDDDD";
+        config2.circleThickness = 0.1;
+        config2.textVertPosition = 0.52;
+        config2.waveAnimateTime = 5000;
+        config2.waveCount = 2;
+        config2.waveOffset = 0.25;
+        config2.textSize = 1.2;
+        config2.maxValue = 150
+        config2.displayPercent = false;
+        var gauge3 = loadLiquidFillGauge("fillgauge3", 71, config2);
+    </script>
+</body>
+
+</html>
